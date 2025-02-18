@@ -9,7 +9,7 @@ df = pd.DataFrame([[1, 'Bob', 'Builder'],
 print(df)
 
 
-#2. Импорт данных
+# Импорт данных
 anime = pd.read_csv('anime.csv')
 rating = pd.read_csv('rating.csv')
 anime_modified = anime.set_index('name')
@@ -19,12 +19,12 @@ print(anime)
 anime_copy = anime.copy(deep=True)
 
 
-# 3Экспорт данных
+# Экспорт данных
 # Создание csv файла с выбронной колонкой #df.to_excel
 anime.name[:10].to_csv('saved_ratings.csv', index=False)
 
 
-#4. Просмотр и исследование данных
+#Просмотр и исследование данных
 # Вывод первых трех строк DateFrame
 print(anime.head(3))
 
@@ -46,7 +46,7 @@ print(anime.describe())
 # Подсчёт количества значений
 print(anime.type.value_counts())
 
-# 5 Извлечение информации из датафреймов
+# Извлечение информации из датафреймов
 # Создание списка или объекта Series на основе значений столбца
 print(anime['genre'].tolist())
 print(anime['genre'])
@@ -58,7 +58,7 @@ print(anime_modified.index.tolist())
 print(anime.columns.tolist())
 
 
-# 6 Добавление данных в датафрейм и удаление их из него
+# Добавление данных в датафрейм и удаление их из него
 # Присоединение к датафрейму нового столбца с заданным значением
 anime['train_set'] = True
 print(anime.info())
@@ -78,7 +78,7 @@ df2 = df1.append(df1.sum(axis=0), ignore_index=True) #sum(axis=1)
 print(df2)
 
 
-# 7 Комбинирование датафреймов
+# Комбинирование датафреймов
 # Конкатенация двух датафреймов
 df1 = anime[0:2]
 print(df1)
@@ -90,7 +90,7 @@ print(pd.concat([df1, df2], ignore_index=True))
 print(rating.merge(anime, left_on='anime_id', right_on='anime_id', suffixes=('_left', '_right')))
 
 
-# 8. Фильтрация
+#  Фильтрация
 #▍Получение строк с нужными индексными значениями
 print(anime_modified.loc[['Haikyuu!! Second Season','Gintama']])
 
@@ -107,11 +107,11 @@ print(anime[1:3])
 print(anime[anime['rating'] > 9.4])
 
 
-# 9. Сортировка
+#  Сортировка
 print(anime.sort_values('rating', ascending=False))
 
 
-# 10. Агрегирование
+#  Агрегирование
 # ▍Функция df.groupby и подсчёт количества записей
 print(anime.groupby('type').count())
 
@@ -127,14 +127,14 @@ tmp_df = tmp_df[tmp_df.rating != -1]
 print(pd.pivot_table(tmp_df, values='rating', index=['user_id'], columns=['anime_id'], aggfunc=np.sum, fill_value=0))
 
 
-# 11. Очистка данных
+# Очистка данных
 # ▍Запись в ячейки, содержащие значение NaN, какого-то другого значения
 pivot = pd.pivot_table(tmp_df, values='rating', index=['user_id'], columns=['anime_id'], aggfunc=np.sum)
 print(pivot)
 print(pivot.fillna(0))
 
 
-# 12. Другие полезные возможности
+# Другие полезные возможности
 # Отбор случайных образцов из набора данных
 print(anime.sample(frac=0.25))
 
